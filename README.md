@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+DevOps Portfolio: React + AWS EC2 + Nginx
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A high-performance landing page deployed on a cloud-based infrastructure. This project demonstrates a full deployment lifecycle, from local React development to hosting on a hardened Linux environment.
 
-## Available Scripts
+🚀 Live Demo
+Public IP: http://35.182.4.208
+Note: This is a live environment hosted on an AWS EC2 instance.
 
-In the project directory, you can run:
+🛠️ Tech Stack & Skills
+* Frontend: React.js, Lucide-React icons, CSS3 (Glassmorphism & CSS Animations).
+* Web Server: Nginx (Reverse Proxy & Static File Hosting).
+* Cloud: AWS EC2 (Ubuntu 22.04 LTS).
+* DevOps: Linux CLI, SSH, SCP, Systemd, Filesystem Hierarchy Standard (FHS).
+  
+📋 Features
+* Responsive UI: Modern, mobile-first design with a "glassmorphism" aesthetic.
+* Production Build: Optimized React production bundle for minimal load times.
+* SPA Routing: Custom Nginx server blocks to handle Single Page Application (SPA) routing and prevent 404 errors on refresh.
+* Linux Hardening: Managed system-level permissions and ownership via chown and chmod.
 
-### `npm start`
+  
+⚙️ Deployment Workflow
+This project followed a rigorous deployment pipeline:
+1. Local Build: Compiled the React application into static assets using npm run build.
+2. Infrastructure Setup: Provisioned an AWS EC2 instance and configured Inbound Security Group Rules (Port 80 for HTTP).
+3. Environment Prep: Configured the Linux Filesystem by modifying /var/www/html ownership to the ubuntu user for secure file transfer.
+4. Data Transfer: Synchronized the build directory to the cloud server via SCP.
+5. Nginx Configuration: Modified /etc/nginx/sites-available/default to implement try_files logic for React Router support.
+Nginx
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Nginx Configuration snippet used:
+location / {
+    root /var/www/html;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+}
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🧠 Lessons Learned
+* Navigating the Linux File Hierarchy to properly place and serve web assets.
+* Debugging Nginx Status and logs via systemctl and journalctl.
+* Resolving Permission Denied errors by understanding user/group ownership in a Unix environment.
 
-### `npm test`
+👨‍💻 Author
+ Emmanuel Adekiitan Cloud Network Infrastructure and DevOps Engineer www.linkedin.com/in/emmanuel-adekiitan-0b0460183 | [GitHub](https://github.com/emmanuel-adekiitan/DevOps_Portfolio/edit/main/README.md)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
